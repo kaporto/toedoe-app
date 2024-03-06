@@ -9,13 +9,8 @@
                 <div class="col-md-8 offset-md-2">
 
                     <!-- Add new Task -->
+                    <NewTask @added="handleAddedTask" />
 
-                    <div class="relative">
-
-                        <input type="text" class="form-control form-control-lg padding-right-lg"
-                            placeholder="+ Add new task. Press enter to save." />
-
-                    </div>
 
                     <!-- List of  uncompleted tasks -->
                     <Tasks :tasks="uncompletedTasks" />
@@ -23,7 +18,8 @@
 
                     <!-- show toggle button-->
                     <div class="text-center my-3" v-show="showToggleCompleteBtn">
-                        <button class="btn btn-sm btn-secondary" @click="$event => showCompletedTasks = !showCompletedTasks">
+                        <button class="btn btn-sm btn-secondary"
+                            @click="$event => showCompletedTasks = !showCompletedTasks">
                             <span v-if="!showCompletedTasks">Show completed</span>
                             <span v-else>Hide completed</span>
                         </button>
@@ -31,7 +27,7 @@
                     </div>
 
                     <!-- list of completed tasks-->
-                    <Tasks :tasks="completedTasks" :show="completedTasksIsVisible && showCompletedTasks"/>
+                    <Tasks :tasks="completedTasks" :show="completedTasksIsVisible && showCompletedTasks" />
                 </div>
 
             </div>
@@ -44,8 +40,9 @@
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { allTasks } from "../http/task-api";
+import { allTasks, createTask } from "../http/task-api";
 import Tasks from "../components/tasks/Tasks.vue";
+import NewTask from "../components/tasks/NewTask.vue"
 
 const tasks = ref([])
 
@@ -65,4 +62,9 @@ const completedTasksIsVisible = computed(
 )
 
 const showCompletedTasks = ref(false)
+
+const handleAddedTask = async (NewTask) => {
+    const { data: createdTask } = await createTask(NewTask)
+    tasks.value.unshift(createdTask.data)
+}
 </script>
