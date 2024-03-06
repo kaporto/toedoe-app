@@ -6,7 +6,8 @@
             :task="task" 
             :key="task.id"
             @updated="$event => $emit('updated',$event)" 
-            @completed="$event => $emit('completed',$event)"
+            @completed="$event => $emit('completed',$event)" 
+            @removed="$event => $emit('removed',$event)"
             />
 
         </ul>
