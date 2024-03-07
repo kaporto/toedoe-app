@@ -9,17 +9,14 @@
                 <div class="col-md-8 offset-md-2">
 
                     <!-- Add new Task -->
-                    <NewTask @added="handleAddedTask" />
+                    <NewTask />
 
 
                     <!-- List of  uncompleted tasks -->
-                    <Tasks :tasks="uncompletedTasks" 
-                    @updated="handleUpdatedTask" 
-                    @completed="handleCompletedTask" 
-                    @removed="handleRemovedTask"/>
+                    <Tasks :tasks="uncompletedTasks" />
 
 
-                    <!-- show toggle button-->
+                    <!-- Show toggle button-->
                     <div class="text-center my-3" v-show="showToggleCompleteBtn">
                         <button class="btn btn-sm btn-secondary"
                             @click="$event => showCompletedTasks = !showCompletedTasks">
@@ -29,12 +26,8 @@
 
                     </div>
 
-                    <!-- list of completed tasks-->
-                    <Tasks :tasks="completedTasks" 
-                    :show="completedTasksIsVisible && showCompletedTasks" 
-                    @updated="handleUpdatedTask" 
-                    @completed="handleCompletedTask" 
-                    @removed="handleRemovedTask"/>
+                    <!-- List of completed tasks-->
+                    <Tasks :tasks="completedTasks" :show="completedTasksIsVisible && showCompletedTasks" />
                 </div>
 
             </div>
@@ -47,9 +40,8 @@
 
 <script setup>
 import { computed, onMounted, ref } from "vue";
-import { useTaskStore} from "../stores/task"
+import { useTaskStore } from "../stores/task"
 import { storeToRefs } from "pinia";
-import { allTasks, completeTask, createTask, updateTask, removeTask } from "../http/task-api";
 import Tasks from "../components/tasks/Tasks.vue";
 import NewTask from "../components/tasks/NewTask.vue"
 
@@ -57,9 +49,7 @@ const store = useTaskStore()
 const { completedTasks, uncompletedTasks } = storeToRefs(store)
 const { fetchAllTasks } = store
 
-const tasks = ref([])
-
-onMounted(async () => {    
+onMounted(async () => {
     fetchAllTasks()
 })
 
@@ -73,30 +63,4 @@ const completedTasksIsVisible = computed(
 
 const showCompletedTasks = ref(false)
 
-const handleAddedTask = async (NewTask) => {
-    const { data: createdTask } = await createTask(NewTask)
-    tasks.value.unshift(createdTask.data)
-}
-
-const handleUpdatedTask = async (task) => {
-    const { data:updatedTask} = await updateTask(task.id, {
-        name: task.name
-    })
-    const currentTask = tasks.value.find(item => item.id == task.id)
-    currentTask.name = updatedTask.data.name
-}
-
-const handleCompletedTask = async (task) => {
-    const { data:updatedTask} = await completeTask(task.id, {
-        is_completed: task.is_completed
-    })
-    const currentTask = tasks.value.find(item => item.id == task.id)
-    currentTask.is_completed = updatedTask.data.is_completed
-}
-
-const handleRemovedTask = async(task) =>{
-    await removeTask(task.id)
-    const index = tasks.value.findIndex(item => item.id == task.id)
-    tasks.value.splice(index,1)
-}
 </script>
