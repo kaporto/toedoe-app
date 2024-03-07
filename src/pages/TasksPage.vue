@@ -55,20 +55,12 @@ import NewTask from "../components/tasks/NewTask.vue"
 
 const store = useTaskStore()
 const { completedTasks, uncompletedTasks } = storeToRefs(store)
-//store.task.name = "First name updated";
-//store.task.is_completed = true;
-/*store.$patch({
-    task:{
-        name:"First task updated using $patch",
-        is_completed: true
-    }
-})*/
+const { fetchAllTasks } = store
 
 const tasks = ref([])
 
-onMounted(async () => {
-    const { data } = await allTasks()
-    tasks.value = data.data
+onMounted(async () => {    
+    fetchAllTasks()
 })
 
 const showToggleCompleteBtn = computed(
