@@ -1,6 +1,5 @@
 <script setup>
 import Navbar from './components/Navbar.vue';
-import TasksPage from './pages/TasksPage.vue'
 import Footer from './components/Footer.vue';
 
 </script>
@@ -8,7 +7,7 @@ import Footer from './components/Footer.vue';
 <template>
 
   <Navbar />
-  <TasksPage />
+  <router-view />
   <Footer />
 
 </template>
