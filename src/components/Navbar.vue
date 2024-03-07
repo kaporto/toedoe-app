@@ -13,7 +13,6 @@
             </a>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 
                 <span class="navbar-toggler-icon"></span>
@@ -26,14 +25,14 @@
 
                     <li class="nav-item">
 
-                        <!-- router-link :to="{name: 'tasks'}" class="nav-link">Tasks</router-link-->
-                        <a href="#" @click.prevent="$event => $router.push('/tasks')" class="nav-link">Tasks</a>
+                        <router-link :to="{ name: 'tasks' }" class="nav-link">Tasks</router-link>
+                        <!-- a href="#" @click.prevent="$event => $router.push('/tasks')" class="nav-link">Tasks</a-->
 
                     </li>
 
                     <li class="nav-item">
 
-                        <a href="#" class="nav-link">Summary</a>
+                        <router-link :to="{ name: 'sumary' }" class="nav-link">Summary</router-link>
 
                     </li>
 
@@ -43,14 +42,14 @@
 
                     <li class="nav-item">
 
-                        <router-link :to="{name: 'login'}" class="btn btn-outline-secondary ms-2">Login</router-link>
-                        
+                        <router-link :to="{ name: 'login' }" class="btn btn-outline-secondary ms-2">Login</router-link>
+
 
                     </li>
 
                     <li class="nav-item">
 
-                        <router-link :to="{name: 'register'}" class="btn btn-danger ms-2">Register</router-link>
+                        <router-link :to="{ name: 'register' }" class="btn btn-danger ms-2">Register</router-link>
 
                     </li>
 
@@ -69,3 +68,9 @@
     </nav>
 
 </template>
+
+<style scoped>
+.nav-link.router-link-active {
+    color: rgba(0, 0, 0, .9);
+}
+</style>
