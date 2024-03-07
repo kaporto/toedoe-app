@@ -8,7 +8,10 @@ const routes = [
     {
         path: "/tasks",
         component: TaskPages,
-        name: 'tasks'
+        name: 'tasks',
+        meta: {
+           auth: true 
+        }
     },
     {
         path: "/login",
@@ -23,7 +26,10 @@ const routes = [
     {
         path: "/sumary",
         component: SumaryPage,
-        name: 'sumary'
+        name: 'sumary',
+        meta:{
+            auth:true
+        }
     },
     {
         path: "/:notFound(.*)",  
