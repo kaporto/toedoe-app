@@ -26,7 +26,8 @@
 
                     <li class="nav-item">
 
-                        <router-link :to="{name: 'tasks'}" class="nav-link">Tasks</router-link>
+                        <!-- router-link :to="{name: 'tasks'}" class="nav-link">Tasks</router-link-->
+                        <a href="#" @click.prevent="$event => $router.push('/tasks')" class="nav-link">Tasks</a>
 
                     </li>
 
@@ -43,6 +44,7 @@
                     <li class="nav-item">
 
                         <router-link :to="{name: 'login'}" class="btn btn-outline-secondary ms-2">Login</router-link>
+                        
 
                     </li>
 
