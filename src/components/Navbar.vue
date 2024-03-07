@@ -4,13 +4,13 @@
 
         <div class="container py-2">
 
-            <a href="#" class="navbar-brand">
+            <router-link :to="{ name: 'home' }" class="navbar-brand">
 
                 <span>Toedoe</span>
 
                 <strong>List</strong>
 
-            </a>
+            </router-link>
 
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
