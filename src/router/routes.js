@@ -1,7 +1,7 @@
 import TaskPages from "../pages/TasksPage.vue";
 import LoginPage from "../pages/LoginPage.vue";
 import RegisterPage from "../pages/RegisterPage.vue";
-import SumaryPage from "../pages/SumaryPage.vue";
+import summaryPage from "../pages/SummaryPage.vue";
 import NotFoundErrorPage from "../pages/errors/NotFoundErrorPage.vue";
 import HomePage from "../pages/HomePage.vue";
 
@@ -31,9 +31,9 @@ const routes = [
         }
     },
     {
-        path: "/sumary",
-        component: SumaryPage,
-        name: 'sumary',
+        path: "/summary",
+        component: summaryPage,
+        name: 'summary',
         meta:{
             auth:true
         }

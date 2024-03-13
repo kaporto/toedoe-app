@@ -29,7 +29,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <router-link :to="{ name: 'sumary' }" class="nav-link">Summary</router-link>
+                        <router-link :to="{ name: 'summary' }" class="nav-link">Summary</router-link>
                     </li>
                 </ul>
 
