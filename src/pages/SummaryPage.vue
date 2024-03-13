@@ -7,7 +7,10 @@
 
                 <div class="col-md-8 offset-md-2">
 
-                    <h1 class="mb-4"> Summary <small class="text-muted">(Tasks this week)</small></h1>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h1> Summary <small class="text-muted">(Tasks this week)</small></h1>
+                        <SummaryFilter />
+                    </div>                    
 
                     <div v-for="(tasks, description) in summaries" :key="description">
 
@@ -28,12 +31,10 @@
 <script setup>
 
 import { useSummaryStore } from "../stores/summary";
-
 import { onMounted } from "vue";
-
 import { storeToRefs } from "pinia";
-
 import Summaries from "../components/summaries/Summaries.vue"
+import SummaryFilter from "../components/summaries/filter/SummaryFilter.vue";
 
 const store = useSummaryStore()
 
